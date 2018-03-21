@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crop Recommender System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js" ></script>
+<style>
+
+#element{
+  font-size: 3em;
+  color: white;
+
+}
+.container {
+   position: relative;
+   text-align: center;
+
+}
+body {
+ margin: 0;
+ font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+ overflow: hidden;
+ background-color: #42c5f4;
+}
+
+.topnav a {
+ float: left;
+ color: black;
+ text-align: center;
+ padding: 14px 16px;
+ text-decoration: none;
+ font-weight: bold;
+ font-size: 17px;
+}
+
+.topnav a:hover {
+ background-color: #ddd;
+ color: black;
+}
+
+.topnav a.active {
+ background-color: #4CAF50;
+ color: white;
+}
+div.image{
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 100%;
+ width: 100%;
+}
+.centered {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   padding-bottom:35%;
+   transform: translate(-50%, -50%);
+}
+
+.speaker{
+  padding-top: 1%;
+    align-content: right;
+    padding-left: 80%;
+}
+</style>
+  <script>
+      function load(){
+  var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  msg.voice = voices[11]; // Note: some voices don't support altering params
+  msg.voiceURI = 'native';
+  msg.volume = 1; // 0 to 1
+  msg.rate = 1; // 0.1 to 10
+  msg.pitch = 1; //0 to 2
+  msg.text = 'नमस्कार ग्राहक !!! हमारा वेब ऐप आपका व्यक्तिगत डिजिटल सहायक है जो आपको हमेशा लोगों की सहायता करने के लिए तैयार है ताकि आप अच्छे अच्छे फसल पा सकते हों और आपको अपना व्यवसाय छोड़ने की आवश्यकता नहीं है। आपको नाइट्रोजन, पोटेशियम, फास्फोरस के मूल्य में प्रवेश करने की जरूरत है या आप सेंसर और मिट्टी के प्रकार का उपयोग कर सकते हैं ताकि हम आपकी जानकारी के लिए आपकी खेत के लिए उपयुक्त फसल के साथ डेटा प्राप्त कर सकें और जो आपको लाभ में देता है';
+  msg.lang = 'hi';
+
+  speechSynthesis.speak(msg);
+
+}
+  </script>
+</head>
+<body>
+
+<div class="topnav">
+ <a class="active" href="#home">Home</a>
+ <a href="#news">About Us</a>
+ <a href="#contact">services</a>
+ <a href="#about">Contacts</a>
+</div>
+
+<div class="speaker">
+    <a><img height="50" onclick="load()"  src="./speaker.png"></a>
+    <h4> हिंदी में जानकारी </h4>
+</div>
+
+
+<div class="container">
+ <img src="./23.jpg" style="width:100%;">
+
+ 
+ <div class="centered">
+
+    <canvas id = "fgcan">
+      </canvas>
+    <p>
+        <b>Upload Image:</b> <input type="file" multiple="false" accept="image/*" id="fgfile" onchange="loadImage()" >
+    </p>
+      
+       <h4>OR</h4>
+
+   <p><input id="N_val" type="text" name="n" size="10" placeholder="Nitrogen" style="height:30px;font-size:20px;" >
+     <input id="P_val" type="text" name="p" size="10" placeholder="Phosphorous" style="height:30px;width:130px;font-size:20px;">
+     <input id="K_val" type="text" name="k" size="10" placeholder="Pottasium" style="height:30px;font-size:20px;"></p></br>
+
+
+     <select  id="type_soil" style="height:30px;font-size:20px;">
+       <option value="" >---Select Soil Type----</option>
+       <option value="alluvial">Alluvial</option>
+       <option value="clay">Clay</option>
+       <option value="black">Black</option>
+       <option value="arid">Arid</option>
+       <option value="sandy">Sandy</option>
+       <option value="silky">Silky</option>
+       <option value="saline">Saline</option>
+       <option value="loamy">Loamy</option>
+    </select></br></br>
+
+    <input type="submit"  value="Get Plants" onclick="submit()" style="height:100px;font-size:30px;color:green;">
+
+    <div id="plant_list" class="recom_plants">
+    </div>
+ </div>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
