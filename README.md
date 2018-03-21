@@ -6,3 +6,6 @@ Crop Recommder system - recommends the best suitable crop by taking the picture 
 2. Md. Sahil
 3. Sai Ramana
 4. Shashank TMk
+
+
+### Project at Hackathon 4.0 Rajasthan college.
